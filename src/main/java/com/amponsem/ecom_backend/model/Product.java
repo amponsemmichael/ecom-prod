@@ -1,7 +1,7 @@
 package com.amponsem.ecom_backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,7 @@ import java.sql.Date;
 public class Product {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String desc;
@@ -24,8 +25,13 @@ public class Product {
     private BigDecimal price;
     private String category;
 
-    private Date release_Date;
-    private int quantity;
+    private Date releaseDate;
     private Boolean available;
+    private int quantity;
 
+    private String imageName;
+    private String imageType;
+
+    @Lob
+    private byte[] imageData;
 }
