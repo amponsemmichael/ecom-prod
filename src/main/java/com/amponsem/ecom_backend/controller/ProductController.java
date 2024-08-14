@@ -5,6 +5,7 @@ import com.amponsem.ecom_backend.model.Product;
 import com.amponsem.ecom_backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,7 +45,15 @@ public class ProductController {
        catch(Exception e){
            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
        }
-
    }
 
+    @GetMapping("/product/{productId}/image")
+    public ResponseEntity<byte[]> getImageByProductId(@PathVariable int productId) {
+       Product product = productService.getProductById(productId);
+       byte[] imageFile = product.getImageData();
+
+       return ResponseEntity.ok()
+               .contentType(MediaType.valueOf(product.getImageType()))
+               .body(imageFile);
+    }
 }
