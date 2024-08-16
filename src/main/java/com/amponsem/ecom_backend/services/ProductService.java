@@ -4,7 +4,6 @@ package com.amponsem.ecom_backend.services;
 import com.amponsem.ecom_backend.model.Product;
 import com.amponsem.ecom_backend.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
