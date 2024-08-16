@@ -82,5 +82,12 @@ public class ProductController {
             else
                 return new ResponseEntity<>("not deleted", HttpStatus.BAD_REQUEST);
         }
+
+    @GetMapping("/products/search")
+    public ResponseEntity<List<Product>> getProductsBySearch(String keyword) {
+            List<Product> products = productService.searchProducts(keyword);
+            return new ResponseEntity<>(products, HttpStatus.OK);
+     }
+
 }
 
